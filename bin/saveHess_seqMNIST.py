@@ -507,7 +507,7 @@ for k_iter in range(FLAGS.n_iter):
                 vr = vr / tf.norm(vr)
                 
                 def loop_cond(ii, lam1, delta_lam, vr):
-                    return tf.math.logical_and(tf.less(ii, Nv), tf.math.greater(tf.abs(delta_lam), max_tol)) # convergence based on lam1 change, similar to PyHessian (Yao et al., 2020), but did not divide by lam1 due to potential numerical issues
+                    return tf.math.logical_and(tf.less(ii, Nv), tf.math.greater(tf.abs(delta_lam), max_tol)) # similar to PyHessian (Yao et al., 2020), convergence based on lam1 change, but did not divide by lam1 due to potential numerical issues
                 
                 def loop_body(ii, lam1, delta_lam, vr):
                     gv = tf.reduce_sum(dWr*tf.stop_gradient(vr)) 
