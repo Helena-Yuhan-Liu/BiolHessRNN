@@ -4,6 +4,7 @@ This code:
     1. Computes the leading eigenvalue of loss' Hessian for RNNs along the training trajectory and store it as lam1r_list
     2. Ensures that gradient approximations (implemented via automatic differentiation) are applied only during training and not during the Hessian computation   
 
+This code should qualitatively reproduce our main result: approximate rule approaches higher curvature regions, quantified by leading Hessian eigenvalue, compared to BPTT
 Functioning of the code is not guaranteed when some parameters (e.g. sparsity) are changed from their default values set below.
 
 Code (to setup and train RNNs) modified from https://github.com/IGITUGraz/LSNN-official
@@ -498,7 +499,7 @@ for k_iter in range(FLAGS.n_iter):
                 sess.run(cellH.w_in_var.assign(sess.run(cell.w_in_var)))
                 
                 Nv = 500
-                max_tol = 1e-6
+                max_tol = 1e-6 # many orders of magnitude smaller than what we observed for a typical leading Hessian eigenvalue
                 dWr = tf.gradients(lossH, cellH.w_rec_var)[0] 
                 
                 # power iteration code begins                
@@ -506,7 +507,7 @@ for k_iter in range(FLAGS.n_iter):
                 vr = vr / tf.norm(vr)
                 
                 def loop_cond(ii, lam1, delta_lam, vr):
-                    return tf.math.logical_and(tf.less(ii, Nv), tf.math.greater(tf.abs(delta_lam), max_tol)) # convergence based on lam1 change, similar to PyHessian (Yao et al., 2020)
+                    return tf.math.logical_and(tf.less(ii, Nv), tf.math.greater(tf.abs(delta_lam), max_tol)) # convergence based on lam1 change, similar to PyHessian (Yao et al., 2020), but did not divide by lam1 due to potential numerical issues
                 
                 def loop_body(ii, lam1, delta_lam, vr):
                     gv = tf.reduce_sum(dWr*tf.stop_gradient(vr)) 
