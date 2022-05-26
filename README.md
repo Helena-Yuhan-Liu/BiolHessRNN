@@ -8,12 +8,12 @@ The code is developed on top of the LSNN repository (https://github.com/IGITUGra
 
 ## Usage
 
-The main code is in the 'bin/' folder. You can use the following command to run:
+The main code is in the `bin/` folder. You can use the following command to run:
 ``sh run_saveHessRNN.sh``
 
 The command above runs ``saveHess_seqMNIST.py``, which contains the code to setup and train a RNN as well as to compute and save leading loss' Hessian eigenvalue. Each run should take about 2 hours to complete. Because run_saveHessRNN.sh runs both BPTT and three-factor learning five times each in series, all 10 runs should be done within 20 hours. One can also perform these runs in parallel to save time. 
 
-The folder `lsnn/` contains the source code retained from the lsnn package [1]. 
+The folder 'lsnn/' contains the source code retained from the lsnn package [1]. 
 
 ## Installation
 
