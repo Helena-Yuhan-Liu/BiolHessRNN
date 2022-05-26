@@ -1,7 +1,7 @@
 """
 ##
 Code modified from https://github.com/IGITUGraz/LSNN-official
-    for rate-based neurons (ReLU activation) and potential gradient truncations via automatic differentiation
+    for rate-based neurons (ReLU activation) with gradient truncations via automatic differentiation
     with the following copyright message retained from the original code:
 
 ##

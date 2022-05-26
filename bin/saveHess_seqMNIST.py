@@ -1,12 +1,12 @@
 """
 ##
-*This code:
-    1. Computes the leading eigenvalue of loss' Hessian for RNNs along the training trajectory and store it as lam1r_list.
-    2. Ensures that gradient approximations (implemented via automatic differentiation) are applied only during training and not during the Hessian computation.   
+This code:
+    1. Computes the leading eigenvalue of loss' Hessian for RNNs along the training trajectory and store it as lam1r_list
+    2. Ensures that gradient approximations (implemented via automatic differentiation) are applied only during training and not during the Hessian computation   
 
-*Functioning of the code is not guaranteed when some parameters (e.g. sparsity) are deviated from their default values set below.
+Functioning of the code is not guaranteed when some parameters (e.g. sparsity) are changed from their default values set below.
 
-*Code (to setup and train RNNs) modified from https://github.com/IGITUGraz/LSNN-official
+Code (to setup and train RNNs) modified from https://github.com/IGITUGraz/LSNN-official
     with the following copyright message retained from the original code:
 
 ##
